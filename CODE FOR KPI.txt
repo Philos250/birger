@@ -1,0 +1,30 @@
+Count of Incidences
+
+No. of Pending Incidences
+
+Closed Incidences
+
+Engineers
+
+Incidence per Hour
+
+------------------------------------
+Incidence Load and Intervention Load
+
+CODE FOR KPI
+============
+
+incident_counts = incident_id_df.value_counts()
+total_incidents = len(incident_counts)
+
+# Print the total number of unique incidents
+print("Total number of unique incidents:", total_incidents)
+
+----------------------------------------------------------
+
+Total number of unique incidents: 2405
+
+LOGIN TO STREAMLIT
+==================
+
+pip install streamlit-authenticator

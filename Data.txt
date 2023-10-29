@@ -1,0 +1,115 @@
+streamlit run birger.py --server.port 9000
+
+myenv\Scripts\Activate
+
+
+env\Scripts\Activate
+
+c:/Users/Savage/Desktop/BIRGER/myenv/Scripts/Activate.ps1
+
+pip freeze > requirements.txt
+
+
+aishimwe@andrew.cmu.edu
+
+bmurenzi@andrew.cmu.edu
+
+Avishant.S@birger.technology
+
+emugume@andrew.cmu.edu
+
+passwords = ["birger@2022", "adelineC4", "MB24", "panini"]
+
+passwords = ["adelineC4", "MB24", "panini", "birger@2022"]
+
+HABIMANA@12345k
+
+QYtGyCS8_6ZcuZUT4Ro9XbyYZK4razaL1AGoWP7My
+
+speedometer2
+
+file-earmark-arrow-up-fill
+
+person-gear
+
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate("path/to/serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+
+
+Apr
+Aug  
+Dec 
+Feb   
+Jan   
+Jul    
+Jun  
+Mar   
+May   
+Start Date missing 
+Grand Total
+
+
+Created On, Technician, Intervention Type and Months
+
+Top 10 Interventions by Location useful columns: Customer, Location Technician, and Intervention Type 
+
+Location	customer  	bars
+cure pipi 	bank1		bars
+	 	bank 2 		bars
+	 	bak z 		bars
+ 
+Geo
+===
+
+Mauritius
+
+Rodrigues
+
+Seychelles
+
+Report Links
+Total No. of servicing per technician monthly/yearly
+Total No. of Interventions per technician monthly/yearly
+Total Zone-wise Interventions per Bank
+Total No. of Interventions per Weekday/Bank/Technician
+Total No. of Interventions within working hours per Bank/Technician
+Total No. of Interventions after 5 p.m. per Bank/Technician
+Intervention by ATM Model
+Top 10 Interventions by Location
+Top 10 Incidents by FE
+Intervention by Bank-FE
+Repairs and Maintenance by FE
+
+
+Total Intervention time weekly/Technician
+Average intervention time weekly/Technician
+Average Response Time
+Average Resolution Time+Indication of idle time per Technician
+Interventions Module-wise
+Average intervention time per module type
+Top 15 ATMs with Recurring issues
+Ageing analysis vs. No. of Interventions
+Recurrence following intervention of Technician
+Recurrence following Servicing date
+Status of Incidents per Technician
+Out of Zone Interaction/Technician
+Comparative Analysis for interventions 2022 vs 2023
+Year to date total
+% Completion year to date for intervention and PM
+median line to show Average interventions and PM displayed on each tech graph
+No. of ATMs per Bank Zone-wise
+No. and % of ATMs per model
+Recurrence by serial number/bank/location/age
+
+
+Total Zone-wise Interventions per Bank useful columns: Created On, Customer, Location Serial No, Zone wise, No. of Years and Intervention Type
+
+useful columns: Start TimeDate, Customer, Location, Subject, Technician, and Intervention Type and Day of the week
+
+useful columns: Created On, Technician, Sattus, and Months
+
+
+@Innocent A. M I believe there are scenarios that one should ask to be moved from one team to another. People sometimes can't just get along for various reasons. Especially in a corporate environment, some people tend to be ambitious, even at the cost of others. I have seen first-hand, where some people delegate tasks assigned to them to other members of the team. Why would one have to take all this? In such cases, employees have the right to ask their managers to intervene; Managers have the responsibility to do so.

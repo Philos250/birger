@@ -1,0 +1,25 @@
+credentials:
+  usernames:
+    amusonera:
+      email: aishimwe@andrew.cmu.edu
+      name: Adeline Musonera
+      password: adelineC4 # Placeholder for hashed password for 'abc'
+    mbievenu:
+      email: bmurenzi@andrew.cmu.edu
+      name: Bienvenu Murenzi
+      password: MB24 # Placeholder for hashed password for 'def'
+    jd:
+      email: jeandedh@andrew.cmu.edu
+      name: HABIMANA Jean de Dieu
+      password: panini # Placeholder for hashed password for 'abc'
+    birger:
+      email: Avishant.S@birger.technology
+      name: Avishant
+      password: birger@2022 # Placeholder for hashed password for 'def'
+cookie:
+  expiry_days: 30
+  key: some_signature_key # Must be string
+  name: some_cookie_name
+preauthorized:
+  emails:
+  - jeandedh@andrew.cmu.edu

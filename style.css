@@ -1,0 +1,43 @@
+div.st-emotion-cache-1dzydcs {
+    background-color: #f8f7f8;
+    border-left-color: #30aee4;
+    border-color: #30aee4;
+    box-shadow: #F71938;
+}
+/* First section of KPI*/
+div.st-emotion-cache-1r6slb0 {
+    background-color: #ffffff;
+    border-left: 10px solid #30aee4; /* 2px solid border on the left side with color #30aee4 */
+    border-color: #30aee4;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    margin: auto;
+    padding: 2%;
+    /* border: 1px solid #DCDCDC; */
+    border-radius: 4px;
+}
+
+/* second section of KPI*/
+div.st-emotion-cache-12w0qpk {
+    background-color: #ffffff;
+    border-left-color: 2px #30aee4;
+    border-color: #30aee4;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    margin: auto;
+    padding: 2%;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+}
+
+div.menu{background-color: aqua;}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+footer::after {
+    content: 'Birger @2023';
+    position: relative;
+    display: block;
+    color: #000;
+}
+div.block-container{padding-top:1em;}
+div.sidebar{padding-top:1em;}
+div.stButton{visibility: hidden;}
