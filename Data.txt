@@ -113,3 +113,34 @@ useful columns: Created On, Technician, Sattus, and Months
 
 
 @Innocent A. M I believe there are scenarios that one should ask to be moved from one team to another. People sometimes can't just get along for various reasons. Especially in a corporate environment, some people tend to be ambitious, even at the cost of others. I have seen first-hand, where some people delegate tasks assigned to them to other members of the team. Why would one have to take all this? In such cases, employees have the right to ask their managers to intervene; Managers have the responsibility to do so.
+
+
+
+For the methodology we use is mainly the Agile Methodology where every
+
+
+Model Selection and Training
+
+Real-time Integration
+
+Dashboard Prototyping
+
+Dashboard Development
+
+Real-time Data Visualization and Testing
+
+Working on the feedback from the supervisor and client
+
+
+
+Dashboard Prototyping
+
+Dashboard Development
+
+Real-time Integration
+
+Real-time Data Visualization and Testing
+
+Model Selection and Training
+
+Working on the feedback from the supervisor and client

