@@ -143,4 +143,12 @@ Real-time Data Visualization and Testing
 
 Model Selection and Training
 
+Model deployment
+
+Final Statement of Work
+
 Working on the feedback from the supervisor and client
+
+
+Streamlit Tutorial 2 - Developing a Streamlit Web App for Geospatial Applications
+https://www.youtube.com/watch?v=fTzlyayFXBM
