@@ -1,0 +1,40 @@
+﻿,0
+Created By,object
+Reported On,object
+Created On,datetime64[ns]
+Travel Time,object
+Incident Id,int64
+Customer,object
+Location,object
+Contract,object
+Priority,object
+SLA,object
+Servicing Team,object
+Category,object
+Service Type,object
+Subject,object
+Technician,object
+Item Id,float64
+Incident Summary,object
+Resolution Summary,object
+Task Summary,object
+Model No,object
+Serial No,object
+Unit ID,object
+Part Number,object
+Service Report No,object
+Task ID,float64
+Task Description,object
+Task Type,object
+Task Status,object
+Hours to be Billed,float64
+Status,object
+Contact Person,object
+Geo,object
+Assignment Type,object
+Day of the Week,object
+MONTH,object
+YEAR,int64
+Time Taken,object
+Start DateTime,datetime64[ns]
+End DateTime,datetime64[ns]

@@ -1,5 +1,24 @@
 streamlit run birger.py --server.port 9000
 
+
+https://youtubetranscript.com
+
+Carnegie Mellon University Africa
+5/8/2024
+Value: kbT8Q~X0M9TI_ay8qPQGtp8qOOfiOLrPRpaEjdgA
+Secret ID: 53abdf41-c45a-448b-baf9-325295b6080e
+
+
+Azure subscription 1
+1f428988-7b95-484d-a7ca-c9fdeccea97c
+Owner
+0.00
+-
+Tenant Root Group
+Active
+
+[FREE] GUNNA X LIL BABY TYPE BEAT - STATUS
+
 myenv\Scripts\Activate
 
 
@@ -152,3 +171,14 @@ Working on the feedback from the supervisor and client
 
 Streamlit Tutorial 2 - Developing a Streamlit Web App for Geospatial Applications
 https://www.youtube.com/watch?v=fTzlyayFXBM
+
+Secret ID:
+53abdf41-c45a-448b-baf9-325295b6080e
+
+Value: 
+kbT8Q~X0M9TI_ay8qPQGtp8qOOfiOLrPRpaEjdgA
+
+Carnegie Mellon University Africa
+5/8/2024
+kbT8Q~X0M9TI_ay8qPQGtp8qOOfiOLrPRpaEjdgA
+53abdf41-c45a-448b-baf9-325295b6080e

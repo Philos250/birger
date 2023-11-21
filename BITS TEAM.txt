@@ -1,0 +1,21 @@
+Report Links
+============
+
+Total No. of servicing per technician monthly/yearly
+Total No. of Interventions per technician monthly/yearly
+Total Region-wise Interventions per Customer
+Total No. of Interventions per Weekday/Customer/Technician [] Filter by Technician, Assignment Type, Day of the Week, Customer, Location, Subject, Years, Quarters and Start Date
+
+Intervention by Customer
+Top 10 Intervention by Location
+Top 10 Incidents by Technician
+Intervention by Customer-Technician
+Repairs and Maintenance by Technician
+Interventions Equipment-wise
+Incident status per Technician
+Equipment type Customer-wise
+Recurrence of Issues
+Recurrence after repairs&servicing
+
+
+Help me to calculate the Intervention by Customer
