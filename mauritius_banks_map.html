@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_536e2189ca3d615edaf8e96c882fd2fe {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_536e2189ca3d615edaf8e96c882fd2fe" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_536e2189ca3d615edaf8e96c882fd2fe = L.map(
+                "map_536e2189ca3d615edaf8e96c882fd2fe",
+                {
+                    center: [-20.348404, 57.552152],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_17ae26a6f7446b63e4e487722f0dfe18 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+                tile_layer_17ae26a6f7446b63e4e487722f0dfe18.addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+    
+            var marker_802ca35499b86e2cc27ae4e56d96fefe = L.marker(
+                [-20.0144, 57.5742],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_d4c223d0d1546d14f0c35b98eefe2ee0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_802ca35499b86e2cc27ae4e56d96fefe.setIcon(icon_d4c223d0d1546d14f0c35b98eefe2ee0);
+        
+    
+        var popup_95634afce445914a12d9c72b0663d204 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_540e1c61127844497705f00d3ee57b78 = $(`<div id="html_540e1c61127844497705f00d3ee57b78" style="width: 100.0%; height: 100.0%;">Bank 11 La Croisette, Grand Baie</div>`)[0];
+                popup_95634afce445914a12d9c72b0663d204.setContent(html_540e1c61127844497705f00d3ee57b78);
+            
+        
+
+        marker_802ca35499b86e2cc27ae4e56d96fefe.bindPopup(popup_95634afce445914a12d9c72b0663d204)
+        ;
+
+        
+    
+    
+            var marker_b381f1e6c4ecbb3863be63aa84056e0a = L.marker(
+                [-20.1744, 57.7725],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_5d9936966e645cf52d0b4440dcac956e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b381f1e6c4ecbb3863be63aa84056e0a.setIcon(icon_5d9936966e645cf52d0b4440dcac956e);
+        
+    
+        var popup_2844c43b835b5c80c73a29fbdf7e37c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c718c6173d95e493c8a6ecee4abc10fb = $(`<div id="html_c718c6173d95e493c8a6ecee4abc10fb" style="width: 100.0%; height: 100.0%;">Bank 11 Belle-Mare</div>`)[0];
+                popup_2844c43b835b5c80c73a29fbdf7e37c9.setContent(html_c718c6173d95e493c8a6ecee4abc10fb);
+            
+        
+
+        marker_b381f1e6c4ecbb3863be63aa84056e0a.bindPopup(popup_2844c43b835b5c80c73a29fbdf7e37c9)
+        ;
+
+        
+    
+    
+            var marker_744bc4cc89a686fe58a22309d23285d1 = L.marker(
+                [-20.1897, 57.7144],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_94249c823443f6904da5a7409c659768 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_744bc4cc89a686fe58a22309d23285d1.setIcon(icon_94249c823443f6904da5a7409c659768);
+        
+    
+        var popup_9438910dd4db293e6caa595e1c28b342 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4178bc79a0e9b5c4fdc1227efb2db363 = $(`<div id="html_4178bc79a0e9b5c4fdc1227efb2db363" style="width: 100.0%; height: 100.0%;">Bank 11 Flacq</div>`)[0];
+                popup_9438910dd4db293e6caa595e1c28b342.setContent(html_4178bc79a0e9b5c4fdc1227efb2db363);
+            
+        
+
+        marker_744bc4cc89a686fe58a22309d23285d1.bindPopup(popup_9438910dd4db293e6caa595e1c28b342)
+        ;
+
+        
+    
+    
+            var marker_e946c98b67b7380b185ac112a069d3b1 = L.marker(
+                [-20.1435, 57.4891],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_1b250b6e5f6c014128ba7b0532625344 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e946c98b67b7380b185ac112a069d3b1.setIcon(icon_1b250b6e5f6c014128ba7b0532625344);
+        
+    
+        var popup_20232c6ca929f963a5defd38bea52b2a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d0753dd16a345ed6eb9b35a939868211 = $(`<div id="html_d0753dd16a345ed6eb9b35a939868211" style="width: 100.0%; height: 100.0%;">Bank 11 Jumbo Riche Terre</div>`)[0];
+                popup_20232c6ca929f963a5defd38bea52b2a.setContent(html_d0753dd16a345ed6eb9b35a939868211);
+            
+        
+
+        marker_e946c98b67b7380b185ac112a069d3b1.bindPopup(popup_20232c6ca929f963a5defd38bea52b2a)
+        ;
+
+        
+    
+    
+            var marker_62c0d6428843513768a954b68f9c5bcb = L.marker(
+                [-20.2986, 57.4788],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_c6918ead8359fccc89b69326e72496d8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_62c0d6428843513768a954b68f9c5bcb.setIcon(icon_c6918ead8359fccc89b69326e72496d8);
+        
+    
+        var popup_5462c77a3055916784607c07a6c9a238 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8b47e51d3a371be91a43b422b5cda0b1 = $(`<div id="html_8b47e51d3a371be91a43b422b5cda0b1" style="width: 100.0%; height: 100.0%;">Bank 11 Winner's Vacoas (Reunion)</div>`)[0];
+                popup_5462c77a3055916784607c07a6c9a238.setContent(html_8b47e51d3a371be91a43b422b5cda0b1);
+            
+        
+
+        marker_62c0d6428843513768a954b68f9c5bcb.bindPopup(popup_5462c77a3055916784607c07a6c9a238)
+        ;
+
+        
+    
+    
+            var marker_e699bd2be1219866665ac3ec2072244a = L.marker(
+                [-20.1605, 57.4977],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_f5880726382c4c0db1885c4561cb561a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e699bd2be1219866665ac3ec2072244a.setIcon(icon_f5880726382c4c0db1885c4561cb561a);
+        
+    
+        var popup_7c65b310082fa3af20cc42879027d96c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cfb5bd734232fd12730fa48de4c31697 = $(`<div id="html_cfb5bd734232fd12730fa48de4c31697" style="width: 100.0%; height: 100.0%;">Bank 8 Port-Louis Main Branch</div>`)[0];
+                popup_7c65b310082fa3af20cc42879027d96c.setContent(html_cfb5bd734232fd12730fa48de4c31697);
+            
+        
+
+        marker_e699bd2be1219866665ac3ec2072244a.bindPopup(popup_7c65b310082fa3af20cc42879027d96c)
+        ;
+
+        
+    
+    
+            var marker_b1332b064663fdaf8fca7641e4b7255b = L.marker(
+                [-20.2547, 57.7453],
+                {}
+            ).addTo(map_536e2189ca3d615edaf8e96c882fd2fe);
+        
+    
+            var icon_007b743ba8175a51e4533a3e15094cb0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b1332b064663fdaf8fca7641e4b7255b.setIcon(icon_007b743ba8175a51e4533a3e15094cb0);
+        
+    
+        var popup_939c364d9d4df0507b03fc278b9f132b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_637a4306258f7832539b6a4d96d4f00f = $(`<div id="html_637a4306258f7832539b6a4d96d4f00f" style="width: 100.0%; height: 100.0%;">Bank 9 Bel Air</div>`)[0];
+                popup_939c364d9d4df0507b03fc278b9f132b.setContent(html_637a4306258f7832539b6a4d96d4f00f);
+            
+        
+
+        marker_b1332b064663fdaf8fca7641e4b7255b.bindPopup(popup_939c364d9d4df0507b03fc278b9f132b)
+        ;
+
+        
+    
+</script>
+</html>

@@ -1,6 +1,18 @@
 streamlit run birger.py --server.port 9000
 
 
+Setting PATH and Running Streamlit in PowerShell
+
+$env:PATH = "C:\Program Files\GTK3-Runtime Win64\bin;" + $env:PATH
+
+streamlit run memo.py
+
+
+Login Screen in streamlit, authentication with MySQL. Part-4
+https://www.youtube.com/watch?v=ydpoMxwWNA8
+watch part 1 and 2
+
+
 https://youtubetranscript.com
 
 Carnegie Mellon University Africa
@@ -18,6 +30,8 @@ Tenant Root Group
 Active
 
 [FREE] GUNNA X LIL BABY TYPE BEAT - STATUS
+
+python -m venv myenv
 
 myenv\Scripts\Activate
 
@@ -71,6 +85,13 @@ Start Date missing
 Grand Total
 
 
+
+Assignment Type
+
+Servicing, Intervention, Parts collection, Repairs, Training
+
+"Servicing", "Intervention", "Parts collection", "Repairs", "Training"
+
 Created On, Technician, Intervention Type and Months
 
 Top 10 Interventions by Location useful columns: Customer, Location Technician, and Intervention Type 
@@ -88,6 +109,76 @@ Mauritius
 Rodrigues
 
 Seychelles
+
+----------
+
+Rwanda, Mauritius, Rodrigues, and Seychelles
+
+Rodrigues-Mont Lubin
+
+
+one very important thing I missed out on is 'do a PhD you love' and where you will learn the most. Money is good, but it is not enough. PhD can be so demanding and requires you to push yourself a lot, mostly beyond current thinking. If you are in a PhD you do not love, you might be miserable. So, kindly go for a PhD you love.
+
+https://www.academictransfer.com/en/job-type/phd/
+
+https://www.findaphd.com/
+
+https://www.jobbnorge.no/search/en?OrderBy=Published&Period=All#1
+
+https://www.manchester.ac.uk/study/postgraduate-research/golden/
+
+https://findanexpert.unimelb.edu.au/searchresults?category=opportunity&pageNumber=1&pageSize=20&q=&sorting=mostRecent&joint_phd%5B%5D=International%20Joint%20PhD
+
+For me, passion first.  Find your passion. Is it money, research, or both. Choose wisely, and be ready to face any implication of your choice. Regardless of any choice, please learn truly, so that it becomes yours.
+
+https://fihirwe.github.io/
+
+
+
+Guild President: Ulrich Ndjodzeka Ndzerem, nndzerem@andrew.cmu.edu
+Guild Vice-President: Abdallah Bitunguramye, abitungu@andrew.cmu.edu
+Auditor General: Samalie Piwan, spiwan@andrew.cmu.edu
+Academic & Research Minister: Ian Akotey, iakotey@andrew.cmu.edu
+Communication Minister: Diane Mugunga, dmugunga@andrew.cmu.edu
+International Affairs Minister: Lyria Keriane Nzabampema, lnzabamp@andrew.cmu.edu
+Social Affairs Minister: Vital Ahishakiye, vahishak@andrew.cmu.edu
+Sports & Wellness Minister: Elise Nshuti, enshuti@andrew.cmu.edu
+Finance Minister: Triphonia Kilasara, tkilasar@andrew.cmu.edu
+
+import streamlit as st
+            import folium
+            from streamlit_folium import folium_static
+
+            # 3D MAP
+
+            # Set page title
+            # st.set_page_config(page_title="Interactive Map", page_icon="🗺️")
+
+            # Create a Streamlit sidebar
+            st.sidebar.header("Map Settings")
+
+            # Set default map center and zoom level
+            default_latitude = -20.0  # Center around the general area of Mauritius
+            default_longitude = 57.5
+            zoom = 10
+
+            # Create a Folium map centered around the default location
+            m = folium.Map(location=[default_latitude, default_longitude], zoom_start=zoom)
+
+            # Imaginary coordinates for Mauritius, Rodrigues, and Seychelles
+            locations = {
+                "Mauritius": [-20.348404, 57.552152],
+                "Rodrigues": [-19.7, 63.4],  # Imaginary location near the actual Rodrigues
+                "Seychelles": [-4.679574, 55.491977]
+            }
+
+            # Add markers to the map
+            for location, coords in locations.items():
+                folium.Marker(coords, tooltip=location).add_to(m)
+
+            # Display the map in Streamlit
+            st.header("Interactive Map")
+            folium_static(m, width=1350, height=600)
 
 Report Links
 Total No. of servicing per technician monthly/yearly
@@ -182,3 +273,44 @@ Carnegie Mellon University Africa
 5/8/2024
 kbT8Q~X0M9TI_ay8qPQGtp8qOOfiOLrPRpaEjdgA
 53abdf41-c45a-448b-baf9-325295b6080e
+
+
+How to use SSO Based Authentication to secure streamlit web-application?
+
+
+https://kigali.deta.page/yxpdoh
+
+Rumble
+
+jeandedh@andrew.cmu.edu
+
+onelaine@bu.edu
+
+
+[Solved] Error: MySql Shutdown Unexpectedly [2022 Update] MySql not starting in Xampp Server
+https://www.youtube.com/watch?v=ipMedkjMupw
+
+
+For the pop could you add Customer column from the dataset and the Location and I need the code for my streamlit app also and generate downloadable copyable code 
+
+
+
+# Ensure "Start Date" and "Start Time" columns are of datetime type
+dfd["Start Date"] = pd.to_datetime(dfd["Start Date"], format="%d/%m/%Y", errors="coerce")
+dfd["Start Time"] = pd.to_datetime(dfd["Start Time"], format="%H:%M", errors="coerce").dt.time
+
+# Combine date and time columns for 'Start' and 'End'
+dfd["Start DateTime"] = pd.to_datetime(
+    dfd["Start Date"].astype(str) + ' ' + dfd["Start Time"].astype(str),
+    format="%Y-%m-%d %H:%M:%S",
+    errors="coerce",
+)
+dfd["End DateTime"] = pd.to_datetime(
+    dfd["End Date"].astype(str) + ' ' + dfd["End Time"].astype(str),
+    format="%Y-%m-%d %H:%M:%S",
+    errors="coerce",
+)
+
+# Drop the original date and time columns if needed
+dfd.drop(["Start Date", "Start Time", "End Date", "End Time"], axis=1, inplace=True)
+

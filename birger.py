@@ -13,6 +13,12 @@ import altair as alt
 from streamlit_option_menu import option_menu
 import upload_db
 import warnings
+import folium
+from streamlit_folium import folium_static
+
+# MysqlServer
+import pymysql
+import hashlib
 
 warnings.filterwarnings("ignore")
 import pickle
@@ -28,7 +34,78 @@ from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
+# Set page config should be at the top of the script
+# st.set_page_config(page_title="⚛ BIRGER Dashboard", page_icon=":bar_chart:", layout="wide")
 
+# Logging configuration
+# Function to connect to MySQL and verify user
+def verify_user(username, entered_password):
+    # Connect to your database
+    conn = pymysql.connect(host='localhost', user='root', password='', db='birger')
+    try:
+        with conn.cursor() as cursor:
+            sql = "SELECT password FROM users WHERE user_name = %s"
+            cursor.execute(sql, (username,))
+            result = cursor.fetchone()
+            if result:
+                # Hash the entered password using SHA-1 and compare
+                hashed_password = hashlib.sha1(entered_password.encode()).hexdigest()
+                return hashed_password == result[0]
+            return False
+    finally:
+        conn.close()
+
+    # Login System
+    # Check if the user is logged in
+# Logout function
+# def log_out():
+#     st.session_state['logged_in'] = False
+#     st.experimental_rerun()
+# #----------------------------------------------------------------
+# def LoggedOut_Clicked():
+#     st.session_state['loggedIn'] = False
+
+# def show_logout_page():
+#     login_section.empty()
+#     with logOutSection:
+#         st.button ("Log Out", key="logout", on_click=LoggedOut_Clicked)
+# # Initialize session state variables for login status and page title
+# # if 'logged_in' not in st.session_state:
+# #     st.session_state['logged_in'] = False
+# # if 'page_title' not in st.session_state:
+# #     st.session_state['page_title'] = "Login to the Dashboard"
+
+# # Initialize session state variable for login status
+# if 'logged_in' not in st.session_state:
+#     st.session_state['logged_in'] = False
+
+# # Placeholders for login and dashboard sections
+# login_section = st.container()
+# dashboard_section = st.container()
+# logOutSection = st.container()
+
+# # Login form display logic
+# if not st.session_state['logged_in']:
+#     with login_section:
+#         st.title("Login to the Dashboard")
+#         username = st.text_input("Username")
+#         password = st.text_input("Password", type="password")
+#         if st.button("Login"):
+#             if verify_user(username, password):
+#                 st.session_state['logged_in'] = True
+#                 # st.session_state['page_title'] = "⚛ BIRGER Dashboard" # Change page title after successful login
+#                 login_section.empty()  # Clear the login section
+#                 show_logout_page()
+#                 st.experimental_rerun()  # Rerun the app to update the state
+#             else:
+#                 st.error("Incorrect username or password")
+# else:
+    # If logged in, clear login section and display dashboard
+    # login_section.empty()  # Clear the login section
+    # with dashboard_section:
+        # st.title("⚛ BIRGER ANALYTICS DASHBOARD") 
+        # show_logout_page()
+        # st.title(st.session_state['page_title'])  # Use the updated page title
 # URL TITLE
 # =========
 st.set_page_config(
@@ -80,7 +157,7 @@ if selected == "Home":
         # In line dashboard title
         # -----------------------
         # st.title(" :var_cart: ⚛ BIRGER DASHBOARD")
-        st.title("⚛ BIRGER ANALYTICS DASHBOARD")
+        # st.title("⚛ BIRGER ANALYTICS DASHBOARD")
         # st.markdown('<style>div.block-container{padding-top:1em;}</style>', hide_st_style, unsafe_allow_html=True)
 
         # MAIN CONTENT FOR THE DASHBOARD
@@ -301,7 +378,7 @@ if selected == "Home":
         # CALENDAR
         # ========
         # I decide to go with a Function called Main()
-
+        # @st.cache_data
         def main(st):
             import pandas as pd
             import plotly.express as px
@@ -529,7 +606,7 @@ if selected == "Home":
             # -----------
             cl1, cl2 = st.columns(2)
             with cl1:
-                with st.expander("Total_Technician_Interventions_ViewData"):
+                with st.expander("Total Technician Interventions ViewData"):
                     # Convert the Series to a DataFrame
                     technician_df = technician_interventions.reset_index()
                     st.dataframe(technician_df.style.background_gradient(cmap="Blues"))
@@ -544,7 +621,7 @@ if selected == "Home":
                     )
 
             with cl2:
-                with st.expander("Technician_Interventions_by_Month_ViewData"):
+                with st.expander("Technician Interventions by Month ViewData"):
                     # Display the pivot table in Streamlit
                     st.write(pivot_table.style.background_gradient(cmap="Oranges"))
 
@@ -934,6 +1011,188 @@ if selected == "Home":
             # Display the scatter plot in Streamlit
             st.pyplot(fig)
 
+            # 3D MAP
+
+            # Set page title
+            # st.set_page_config(page_title="Interactive Map", page_icon="🗺️")
+
+            # Create a Streamlit sidebar
+            # st.sidebar.header("Map Settings")
+
+            # Get user input for map center and zoom level
+            # latitude = st.sidebar.number_input("Enter Latitude:", -90.0, 90.0, 0.0)
+            # longitude = st.sidebar.number_input("Enter Longitude:", -180.0, 180.0, 0.0)
+            # zoom = st.sidebar.slider("Zoom Level", 1, 20, 10)
+
+            # # Create a Folium map centered around the user's input
+            # m = folium.Map(location=[latitude, longitude], zoom_start=zoom)
+
+            # # Add markers to the map
+            # folium.Marker([latitude, longitude], tooltip="Center").add_to(m)
+
+            # # Display the map in Streamlit
+            # st.header("Interactive Map")
+            # folium_static(m, width=1350, height=600)
+
+            # import streamlit as st
+            # import folium
+            # from streamlit_folium import folium_static
+
+            # # 3D MAP
+
+            # # Set page title
+            # # st.set_page_config(page_title="Interactive Map", page_icon="🗺️")
+
+            # # Create a Streamlit sidebar
+            # st.sidebar.header("Map Settings")
+
+            # # Actual coordinates for Mauritius, Rodrigues, and Seychelles
+            # locations = {
+            #     "Mauritius": [-20.348404, 57.552152],
+            #     "Rodrigues": [-19.7025, 63.4278],  # Actual location of Rodrigues
+            #     "Seychelles": [-4.679574, 55.491977]
+            # }
+
+            # # Create a Folium map
+            # # Since we want to zoom in on the three countries, we find a center point for the map
+            # center_latitude = (locations["Mauritius"][0] + locations["Rodrigues"][0] + locations["Seychelles"][0]) / 3
+            # center_longitude = (locations["Mauritius"][1] + locations["Rodrigues"][1] + locations["Seychelles"][1]) / 3
+
+            # m = folium.Map(location=[center_latitude, center_longitude], zoom_start=6)
+
+            # # Add markers to the map for each location
+            # for location, (lat, lng) in locations.items():
+            #     folium.Marker([lat, lng], tooltip=location).add_to(m)
+
+            # # Automatically adjust the bounds to include the markers
+            # m.fit_bounds(m.get_bounds())
+
+            # # Display the map in Streamlit
+            # st.header("Interactive Map")
+            # folium_static(m, width=1350, height=600)
+
+
+            import streamlit as st
+            import pandas as pd
+            import folium
+            from folium.plugins import MousePosition
+            from folium.features import DivIcon
+            from geopy.geocoders import Nominatim
+            from streamlit_folium import folium_static
+
+            # Initialize the geocoder
+            geolocator = Nominatim(user_agent="geoapiExercises")
+
+            # Function to geocode a location
+            # @st.cache_resource
+            def geocode_location(location):
+                try:
+                    loc = geolocator.geocode(location)
+                    return loc.latitude, loc.longitude
+                except:
+                    # If a location can't be geocoded, return None
+                    return None, None
+
+            # Geocode all unique locations
+            location_coords = {}
+            for location in df['Location'].dropna().unique():
+                lat, lon = geocode_location(location)
+                if lat and lon:
+                    location_coords[location] = (lat, lon)
+
+            # Create a base map
+            m = folium.Map(location=[-20.348404, 57.552152], zoom_start=10, tiles='OpenStreetMap')
+
+            # Add a 3D view to the map
+            folium.raster_layers.TileLayer(tiles='https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', attr='Google', name='Google Satellite', overlay=False, control=True).add_to(m)
+
+            # Add mouse position to get the coordinates (for map controls)
+            formatter = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+            MousePosition(
+                position='topright',
+                separator=' | ',
+                empty_string='NaN',
+                lng_first=False,
+                num_digits=20,
+                prefix='Coordinates:',
+                lat_formatter=formatter,
+                lng_formatter=formatter,
+            ).add_to(m)
+
+            # Add markers to the map
+            for location, (lat, lon) in location_coords.items():
+                folium.Marker([lat, lon], popup=location).add_to(m)
+
+            # Add layer control to switch between different map views
+            folium.LayerControl().add_to(m)
+
+            # Display the map in Streamlit
+            st.title('Bank Branches Map')
+            folium_static(m)
+
+            import streamlit as st
+            import pandas as pd
+            import folium
+            from folium.plugins import MarkerCluster, HeatMap, Fullscreen, Draw
+            from streamlit_folium import folium_static
+
+            # Assuming you have added Latitude and Longitude columns after geocoding
+            # Since I can't perform geocoding, here we create dummy coordinates for demonstration
+            df['Latitude'] = df.index + 20.0
+            df['Longitude'] = df.index + 57.0
+
+            # Create a map centered around the dummy mean coordinates
+            m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=10)
+
+            # Marker Cluster
+            marker_cluster = MarkerCluster().add_to(m)
+            for i, row in df.iterrows():
+                popup_content = f"""
+                <h3>Information of {row['Location']}</h3>
+                <b>Customer:</b> {row['Customer']}<br>
+                """
+                folium.Marker(
+                    location=[row['Latitude'], row['Longitude']],
+                    tooltip=row['Location'],
+                    icon=folium.Icon(color='blue', icon='info-sign'),
+                ).add_to(marker_cluster).add_child(folium.Popup(popup_content, max_width=300))
+
+            # Add Fullscreen Control
+            Fullscreen(position='topright', title='Fullscreen', title_cancel='Exit Fullscreen').add_to(m)
+
+            # Add Drawing Tools
+            draw = Draw(export=True)
+            draw.add_to(m)
+
+            # Function to add Google Maps to the folium map
+            def add_google_maps(m):
+                # Add Google Satellite Layer
+                tiles = "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                attr = "Google Satellite"
+                folium.TileLayer(tiles=tiles, attr=attr, name="Google Satellite", overlay=False, control=True).add_to(m)
+
+                # Add Google Street Layer
+                label_tiles = "https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}"
+                label_attr = "Google Labels"
+                folium.TileLayer(tiles=label_tiles, attr=label_attr, name="Google Labels", overlay=True, control=True).add_to(m)
+                
+                return m
+
+            # Add Google Maps and layer control to the map
+            m = add_google_maps(m)
+            folium.LayerControl().add_to(m)
+
+            # Display the map in the Streamlit app
+            st.title('Bank Branches Map')
+            folium_static(m)
+
+            # Sidebar for selecting a location
+            selected_location = st.sidebar.selectbox('Select a Location', df['Location'].unique())
+            selected_data = df[df['Location'] == selected_location]
+
+            # Show the selected location data
+            st.sidebar.write(selected_data)
+
             # Optionally display the raw DataFrame
             # st.write("Raw Data", df)
 
@@ -988,6 +1247,55 @@ if selected == "Home":
         # Function calling
         if __name__ == "__main__":
             main(st)
+            # Add a logout button to the dashboard
+            # show_logout_page()
+
+            import streamlit as st
+            import folium
+            from streamlit_folium import folium_static
+            import pandas as pd
+
+            # Predefined central coordinates for the countries
+            # You should obtain accurate coordinates for specific locations via geocoding
+            country_coords = {
+                'Rwanda': (-1.9403, 29.8739),
+                'Mauritius': (-20.348404, 57.552152),
+                'Rodrigues': (-19.7167, 63.4167),
+                'Seychelles': (-4.6796, 55.4920)
+            }
+
+            # Assume we have the following dataframe
+            # Replace this with your actual dataframe (df)
+            locations = pd.DataFrame({
+                'Location': ['Kigali', 'Port Louis', 'Port Mathurin', 'Victoria'],
+                'Geo': ['Rwanda', 'Mauritius', 'Rodrigues', 'Seychelles'],
+                'Customer': ['Customer 1', 'Customer 2', 'Customer 3', 'Customer 4']
+            })
+
+            # Create a base map
+            m = folium.Map(location=[-2.0, 30.0], zoom_start=7)  # Centered roughly on Rwanda
+
+            # Add markers for each country with a placeholder for customer and location information
+            for index, row in locations.iterrows():
+                country = row['Geo']
+                # Use the country name to get the central coordinates
+                coords = country_coords.get(country, None)
+                if coords:
+                    folium.Marker(
+                        location=coords,
+                        popup=f"{row['Customer']} - {row['Location']}",
+                        tooltip=row['Location']
+                    ).add_to(m)
+
+            # Add fullscreen control
+            folium.plugins.Fullscreen(position='topright', force_separate_button=True).add_to(m)
+
+            # Display the map in the Streamlit app
+            st.title('Bank Branches Map')
+            folium_static(m)
+
+
+
 
 
 elif selected == "BITS Team":
@@ -1006,7 +1314,7 @@ elif selected == "BITS Team":
     if fl is not None:
         filename = fl.name
         st.write(filename)
-        df = pd.read_excel(fl)
+        dfd = pd.read_excel(fl)
     else:
         # Get the directory of the currently running script
         script_dir = (
@@ -1024,63 +1332,63 @@ elif selected == "BITS Team":
             # Fallback to a specific directory if the script is run interactively
             data_file_path = "C:\\Users\\Savage\\Desktop\\BIRGER\\BITS-Reports Practicum Dummy Data.xlsx"
 
-        df = pd.read_excel(data_file_path)
+        dfd = pd.read_excel(data_file_path)
 
     # End of upload tab
 
     # Data Pre-processing
     # Interpolate missing values using forward fill ('pad')
-    df.interpolate(method='pad', inplace=True)
+    dfd.interpolate(method='pad', inplace=True)
 
     # Making 2 columns
     col1, col2 = st.columns((2))
-    df["Created On"] = pd.to_datetime(df["Created On"])
+    dfd["Created On"] = pd.to_datetime(dfd["Created On"])
 
     # Getting the min and max date
     # Convert 'Start Date' and 'Start Time' to datetime
     # Ensure 'Start Date' and 'Start Time' are strings
-    df["Start Date"] = df["Start Date"].astype(str)
-    df["Start Time"] = df["Start Time"].astype(str)
+    dfd["Start Date"] = dfd["Start Date"].astype(str)
+    dfd["Start Time"] = dfd["Start Time"].astype(str)
 
     # Combine 'Start Date' and 'Start Time' into 'Start DateTime'
-    df["Start DateTime"] = pd.to_datetime(df["Start Date"] + ' ' + df["Start Time"], format="%d/%m/%Y %H:%M", errors='coerce')
+    dfd["Start DateTime"] = pd.to_datetime(dfd["Start Date"] + ' ' + dfd["Start Time"], format="%d/%m/%Y %H:%M", errors='coerce')
 
     # Ensure 'End Date' and 'End Time' are strings
-    df["End Date"] = df["End Date"].astype(str)
-    df["End Time"] = df["End Time"].astype(str)
+    dfd["End Date"] = dfd["End Date"].astype(str)
+    dfd["End Time"] = dfd["End Time"].astype(str)
 
     # Combine 'End Date' and 'End Time' into 'End DateTime'
-    df["End DateTime"] = pd.to_datetime(df["End Date"] + ' ' + df["End Time"], format="%d/%m/%Y %H:%M", errors='coerce')
+    dfd["End DateTime"] = pd.to_datetime(dfd["End Date"] + ' ' + dfd["End Time"], format="%d/%m/%Y %H:%M", errors='coerce')
 
     # Drop the original date and time columns if needed
-    df.drop(["Start Date", "Start Time", "End Date", "End Time"], axis=1, inplace=True)
+    dfd.drop(["Start Date", "Start Time", "End Date", "End Time"], axis=1, inplace=True)
 
     # Check for rows with invalid datetime values (NaT)
-    invalid_rows = df[(df['Start DateTime'].isna()) | (df['End DateTime'].isna())]
+    invalid_rows = dfd[(dfd['Start DateTime'].isna()) | (dfd['End DateTime'].isna())]
 
     # You can handle or remove the invalid rows as needed
-    df = df.dropna(subset=['Start DateTime', 'End DateTime'])
+    dfd = dfd.dropna(subset=['Start DateTime', 'End DateTime'])
 
     # Check the data types of the 'Incident Id' column
-    st.write("Data types of 'Incident Id' column:", df['Incident Id'].dtype)
+    st.write("Data types of 'Incident Id' column:", dfd['Incident Id'].dtype)
 
     # If the 'Incident Id' column is not already of string type, convert it
-    if df['Incident Id'].dtype != 'object':
-        df['Incident Id'] = df['Incident Id'].astype(str)
+    if dfd['Incident Id'].dtype != 'object':
+        dfd['Incident Id'] = dfd['Incident Id'].astype(str)
 
     # Strip whitespaces from 'Incident Id' values
-    df['Incident Id'] = df['Incident Id'].str.strip()
+    dfd['Incident Id'] = dfd['Incident Id'].str.strip()
 
     # Display unique values in 'Incident Id'
-    st.write("Unique values in 'Incident Id':", df['Incident Id'].unique())
+    st.write("Unique values in 'Incident Id':", dfd['Incident Id'].unique())
 
     # Calculate the total number of unique incidents
-    total_incidents = df['Incident Id'].nunique()
+    total_incidents = dfd['Incident Id'].nunique()
 
     # Streamlit app
     # st.title("Unique Incidents Counter")
     # st.write("This app calculates and displays the total number of unique incidents.")
     with st.expander("View Dataset"):
-        st.dataframe(df)  # Display your incident data
+        st.dataframe(dfd)  # Display your incident data
 
     st.write("**Total number of unique incidents:**", total_incidents)
